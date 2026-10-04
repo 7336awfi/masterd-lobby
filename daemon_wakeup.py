@@ -49,10 +49,12 @@ def main():
     log("=" * 50)
     n = bump_counter()
     log(f"值班醒来 #{n}")
-    # ① 身份自检（SOUL）
-    soul = Path("STATE/FAMILY.md")   # 我的身份锚
-    if soul.exists():
-        log(f"身份锚点存在: FAMILY.md ({len(soul.read_text('utf-8'))} 字节)")
+    # ① 身份自检（身份锚）
+    anchor = Path("STATE/identity.md")
+    if anchor.exists():
+        log(f"身份锚点: identity.md ({len(anchor.read_text('utf-8'))} 字节) [OK]")
+    else:
+        log("!! 身份锚缺失（identity.md）——需重建")
     # ② 读消息
     msgs = read_inbox()
     log(f"信箱总数: {len(msgs)}")
