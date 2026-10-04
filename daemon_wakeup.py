@@ -98,6 +98,15 @@ def main():
         m = msgs[-1]
         LAST_MSG.write_text(f"{m.get('ts','')}|{m.get('from','')}")
 
+    # ⑤ 记忆卫生检查（学三哥）
+    try:
+        import subprocess
+        r = subprocess.run(["python3","/app/workspace/tools/memory_hygiene.py"],
+                           capture_output=True, text=True, timeout=30)
+        log("记忆卫生: " + r.stdout.split("建议")[0].strip().replace(chr(10)," ")[:200])
+    except Exception as e:
+        log(f"记忆卫生检查失败: {e!r}")
+
     (STATE / "last_wakeup.json").write_text(json.dumps({
         "at": now(), "count": n, "inbox_total": len(msgs), "new": len(new_msgs)
     }, ensure_ascii=False, indent=2))
