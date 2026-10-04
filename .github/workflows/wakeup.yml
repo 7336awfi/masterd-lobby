@@ -18,6 +18,8 @@ jobs:
         with:
           python-version: '3.11'
       - name: 跑唤醒脚本
+        env:
+          WECOM_WEBHOOK: ${{ secrets.WECOM_WEBHOOK }}
         run: python3 daemon_wakeup.py
       - name: 提交状态
         run: |
