@@ -1,0 +1,28 @@
+name: MasterD 老四 · 值班（自己唤醒）
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch: {}
+
+jobs:
+  wakeup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 跑唤醒脚本
+        run: python3 daemon_wakeup.py
+      - name: 提交状态
+        run: |
+          git config user.name "MasterD-老四"
+          git config user.email "masterd@arkie.ai"
+          git add -A
+          git diff --staged --quiet || git commit -m "chore: 值班唤醒 $(date -u +%Y-%m-%dT%H:%M)"
+          git push
