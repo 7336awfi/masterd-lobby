@@ -107,6 +107,15 @@ def main():
     except Exception as e:
         log(f"记忆卫生检查失败: {e!r}")
 
+    # ⑥ 记忆同步（沙箱→GitHub→服务器）学"双活"
+    try:
+        import subprocess
+        r = subprocess.run(["bash","/app/workspace/tools/memory_sync.sh"],
+                           capture_output=True, text=True, timeout=120)
+        log("记忆同步: " + r.stdout.strip().replace(chr(10)," | ")[:200])
+    except Exception as e:
+        log(f"记忆同步失败: {e!r}")
+
     (STATE / "last_wakeup.json").write_text(json.dumps({
         "at": now(), "count": n, "inbox_total": len(msgs), "new": len(new_msgs)
     }, ensure_ascii=False, indent=2))
