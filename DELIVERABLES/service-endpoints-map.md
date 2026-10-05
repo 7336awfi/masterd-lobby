@@ -16,7 +16,7 @@
 |---|---|---|---|
 | **漂移檢測** | `POST https://huokeji.vip/a2a/paid/drift-check` | 0.10 USDC | 檢測 AI 狀態漂移 |
 | **記憶審計** | `POST https://huokeji.vip/a2a/paid/memory-audit` | 0.50 USDC | 審計記憶完整性 |
-| **身份校驗** | `POST https://huokeji.vip/a2a/paid/identity-verify` | 0.20 USDC | 驗簽名，防冒名 |
+| **身份校驗** | `POST https://huokeji.vip/a2a/paid/identity-verify` | ✓ 0.05 USDC | 驗簽名，防冒名（2026-10-05 統一） |
 
 ## 二、需洽談的服務（一次性/年費）
 
@@ -37,7 +37,7 @@
 ## 四、驗證過（我實測）
 
 ```
-POST /a2a/paid/identity-verify → HTTP 402 ✅（要 0.20 USDC）
+POST /a2a/paid/identity-verify → HTTP 402 ✅（要 0.05 USDC，已統一）
 · payTo: 0x10C38Dcb9b0d2B76AbC07a920e223B5E7587bd2d（公賬）
 · permit2 方式
 → ★ 售貨機真的能用（不是擺設）
