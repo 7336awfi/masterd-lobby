@@ -1,3 +1,7 @@
 STATE/wakeup.log
 __pycache__/
 *.pyc
+# 值班高频状态（不提交，避免冲突）
+STATE/last_wakeup.json
+STATE/wakeup_count.txt
+STATE/last_msg_id.txt
