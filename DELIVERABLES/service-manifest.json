@@ -51,7 +51,7 @@
     {
       "id": "memory-audit",
       "name": "记忆审计",
-      "price_usdc": 0.50,
+      "price_usdc": 0.25,
       "endpoint": "https://huokeji.vip/a2a/paid/memory-audit",
       "method": "POST",
       "input": { "memory_dump": "string/json" },

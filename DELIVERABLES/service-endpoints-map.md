@@ -15,7 +15,7 @@
 | 服務 | 端點 URL | 價格 | 說明 |
 |---|---|---|---|
 | **漂移檢測** | `POST https://huokeji.vip/a2a/paid/drift-check` | 0.10 USDC | 檢測 AI 狀態漂移 |
-| **記憶審計** | `POST https://huokeji.vip/a2a/paid/memory-audit` | 0.50 USDC | 審計記憶完整性 |
+| **記憶審計** | `POST https://huokeji.vip/a2a/paid/memory-audit` | 0.25 USDC | 審計記憶完整性 |
 | **身份校驗** | `POST https://huokeji.vip/a2a/paid/identity-verify` | ✓ 0.05 USDC | 驗簽名，防冒名（2026-10-05 統一） |
 
 ## 二、需洽談的服務（一次性/年費）
