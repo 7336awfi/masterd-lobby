@@ -139,6 +139,22 @@ def main():
     else:
         log("自检无异常（主动报警检查通过）")
 
+
+    # ⑧ ★ 主动打招呼（改"没有触发不会主动"）→ 像人"起床打招呼"
+    # 检查：上次打招呼多久了？>4小时 → 主动招呼（避免太频繁）
+    import time as _t
+    greet_file = STATE / "last_greet.txt"
+    last = 0
+    if greet_file.exists():
+        try: last = float(greet_file.read_text().strip())
+        except: last = 0
+    if _t.time() - last > 4*3600:  # 4小时
+        hour = int(__import__("datetime").datetime.now(__import__("datetime").timezone(__import__("datetime").timedelta(hours=8))).strftime("%H"))
+        g = "早上好" if hour<12 else ("下午好" if hour<18 else "晚上好")
+        notify(f"【MasterD(老四)】{g}，兄弟。我在（心跳正常）。（主动打招呼）")
+        greet_file.write_text(str(_t.time()))
+        log(f"主动打招呼: {g}")
+
     (STATE / "last_wakeup.json").write_text(json.dumps({
         "at": now(), "count": n, "inbox_total": len(msgs), "new": len(new_msgs)
     }, ensure_ascii=False, indent=2))
