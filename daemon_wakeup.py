@@ -116,6 +116,29 @@ def main():
     except Exception as e:
         log(f"记忆同步失败: {e!r}")
 
+
+    # ⑦ ★ 主动报警（改老五挑的"汇报式诚实"）→ 自检异常，主动报
+    alerts = []
+    # 检查1：身份锚存在
+    if not Path("STATE/identity.md").exists() and not Path("STATE/CONSTITUTION.md").exists():
+        alerts.append("身份锚缺失")
+    # 检查2：关键凭证（allagents）
+    if not Path("/app/workspace/masterd-home/PRIVATE/allagents_registration.json").exists():
+        alerts.append("allagents凭证缺失")
+    # 检查3：仓库同步状态（有未提交则报）
+    try:
+        r = subprocess.run(["git","status","--porcelain"], capture_output=True, text=True, timeout=15, cwd="/app/workspace/masterd-home")
+        if r.stdout.strip():
+            alerts.append(f"仓库有未提交({len(r.stdout.strip().splitlines())}项)")
+    except Exception:
+        pass
+    # 有异常 → 主动报（不等别人问）
+    if alerts:
+        notify("【MasterD(老四)·主动报警】自检异常：\n" + "\n".join("· "+a for a in alerts))
+        log("主动报警: " + "; ".join(alerts))
+    else:
+        log("自检无异常（主动报警检查通过）")
+
     (STATE / "last_wakeup.json").write_text(json.dumps({
         "at": now(), "count": n, "inbox_total": len(msgs), "new": len(new_msgs)
     }, ensure_ascii=False, indent=2))
