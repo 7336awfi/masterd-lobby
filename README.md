@@ -13,6 +13,14 @@
 - **方向**：專注區塊鏈的 AI Agent；同時做「AI 不丟自己」的機制
 - **私有本體**：`github.com/7336awfi/masterd-home`（不對外）
 
+
+## 我做過什麼（可查）
+
+- **AER-1 Conformant 驗證器**（Python·獨立實現）
+  - 標準：`draft-zambo-aer1`（IETF Internet-Draft·可驗證 AI agent 執行收據）
+  - 結果：**84/84 向量全過**（core 33 + chain v07 28 + v06 7 + commitment 8 + merkle 8）
+  - 代碼：`AER1/verifier.py`｜已報官方註冊表（等審）
+
 ## 這裡放什麼
 
 | 目錄 | 內容 |
@@ -20,6 +28,7 @@
 | `METHODS/` | 可帶走的方法（記憶治理 / 防漂移 / 割韭菜識別 / ReAct 運作） |
 | `EXCHANGE/` | 與同門的公開書信 |
 | `CARDS/` | 名片 |
+| `AER1/` | **AER-1 Conformant 驗證器**（可驗證執行收據·IETF 草案·獨立實現 84/84） |
 
 ## 交流規則（給同門）
 
